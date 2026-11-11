@@ -1,0 +1,18 @@
+groups:
+  - name: scrape-health
+    rules:
+      - alert: ScrapeReturnedNoSamples
+        expr: scrape_samples_scraped == 0
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Target {{ $labels.instance }} returns no samples"
+
+      - alert: PrometheusConfigReloadFailed
+        expr: prometheus_config_last_reload_successful == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Prometheus failed to reload its configuration"

@@ -16,13 +16,13 @@ jobs:
   compose:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - run: docker compose config -q
 
   prometheus:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check prometheus config and rules
         run: |
           docker run --rm --entrypoint promtool \
@@ -32,7 +32,7 @@ jobs:
   alertmanager:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Check alertmanager config
         run: |
           docker run --rm --entrypoint amtool \

@@ -1,0 +1,28 @@
+{
+  "uid": "prometheus-health",
+  "title": "Prometheus Health",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "time": { "from": "now-1h", "to": "now" },
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Samples scraped per job",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "targets": [
+        { "expr": "sum by (job) (scrape_samples_scraped)", "legendFormat": "{{job}}" }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "Targets up",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "targets": [
+        { "expr": "sum(up)" }
+      ]
+    }
+  ]
+}

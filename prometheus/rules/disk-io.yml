@@ -1,0 +1,10 @@
+groups:
+  - name: disk-io-alerts
+    rules:
+      - alert: DiskBusy
+        expr: rate(node_disk_io_time_seconds_total[5m]) > 0.9
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Disk {{ $labels.device }} is busy on {{ $labels.instance }}"

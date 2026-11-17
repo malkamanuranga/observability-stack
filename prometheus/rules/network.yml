@@ -1,0 +1,10 @@
+groups:
+  - name: network-alerts
+    rules:
+      - alert: HighNetworkReceive
+        expr: rate(node_network_receive_bytes_total{device!="lo"}[5m]) > 100000000
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "High inbound traffic on {{ $labels.instance }} ({{ $labels.device }})"

@@ -1,0 +1,10 @@
+groups:
+  - name: load-alerts
+    rules:
+      - alert: HighLoadAverage
+        expr: node_load5 / count without (cpu, mode) (node_cpu_seconds_total{mode="idle"}) > 1.5
+        for: 15m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Load average is high on {{ $labels.instance }}"
